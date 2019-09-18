@@ -11,6 +11,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_testing_sentry/main.dart';
 
 void main() {
+  testWidgets('Login text test', (tester) async {
+    await tester.pumpWidget(new MyApp());
+    expect(find.text('Login'), findsOneWidget);
+  });
+
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
