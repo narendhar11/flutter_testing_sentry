@@ -20,24 +20,7 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        margin: EdgeInsets.all(20.0),
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: <Widget>[
 
-              emailField(),
-              passwordField(),
-              Container(margin: EdgeInsets.only(top: 25.0)),
-              submitButton(),
-            ],
-          ),
-        ),
-      ),
-    );
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
@@ -47,8 +30,13 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
       ),
     );
 
+    Widget logoText(){
+      return Text('Login', style: TextStyle(fontWeight: FontWeight.bold));
+    }
+
     Widget emailField() {
       return TextFormField(
+        key: Key('email'),
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           labelText: 'Email Address',
@@ -64,6 +52,7 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
 
     Widget passwordField() {
       return TextFormField(
+        key: Key('password'),
         obscureText: true,
         decoration: InputDecoration(
           labelText: 'Password',
@@ -88,13 +77,26 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
         },
       );
     }
-    Widget loginText(){
-      return Text(
-        'Login',
-        textAlign: TextAlign.center,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(fontWeight: FontWeight.bold),
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+        margin: EdgeInsets.all(20.0),
+        child: Center(
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: <Widget>[
+                logoText(),
+                emailField(),
+                passwordField(),
+                Container(margin: EdgeInsets.only(top: 25.0)),
+                submitButton(),
+              ],
+            ),
+          ),
+        ),
       )
-    }
+    );
   }
 }
